@@ -22,6 +22,9 @@ import { prisma } from '~/server/prisma';
 // });
 
 export const postRouter = router({
+  hoge: publicProcedure.query(async () => {
+    return 0;
+  }),
   // list: publicProcedure
   //   .input(
   //     z.object({

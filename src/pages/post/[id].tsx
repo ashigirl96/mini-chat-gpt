@@ -23,6 +23,7 @@ import { RouterOutput, trpc } from '~/utils/trpc';
 const PostViewPage: NextPageWithLayout = () => {
   // const id = useRouter().query.id as string;
   // const postQuery = trpc.post.byId.useQuery({ id });
+  const x = trpc.post.hoge.useQuery();
   //
   // if (postQuery.error) {
   //   return (
@@ -38,7 +39,13 @@ const PostViewPage: NextPageWithLayout = () => {
   // }
   // const { data } = postQuery;
   // return <PostItem post={data} />;
-  return <div>Hello</div>;
+  if (x.status !== 'success') {
+    return <>Loading...</>;
+  }
+
+  const { data } = x;
+
+  return <div>Hello {data}</div>;
 };
 
 export default PostViewPage;
