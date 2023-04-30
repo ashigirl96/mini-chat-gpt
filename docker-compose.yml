@@ -6,7 +6,7 @@ volumes:
 services:
   db:
     image: postgres:14
-    container_name: mini-chat-gpt-db
+    container_name: mini-chat-chat-db
     volumes:
       - db-data:/var/lib/postgresql/mini_chat_gpt_db/data
     ports:

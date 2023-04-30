@@ -2,7 +2,7 @@ import NextError from 'next/error';
 import { useRouter } from 'next/router';
 import { NextPageWithLayout } from '~/pages/_app';
 import { RouterOutput, trpc } from '~/utils/trpc';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // type PostByIdOutput = RouterOutput['post']['byId'];
 
@@ -22,35 +22,30 @@ import { useEffect } from 'react';
 // }
 
 const PostViewPage: NextPageWithLayout = () => {
-  // const id = useRouter().query.id as string;
-  // const postQuery = trpc.post.byId.useQuery({ id });
-  const x = trpc.post.hoge.useQuery();
-  const utils = trpc.useContext();
-  useEffect(() => {
-    void utils.post.invalidate();
-  }, [utils.post]);
-  //
-  // if (postQuery.error) {
-  //   return (
-  //     <NextError
-  //       title={postQuery.error.message}
-  //       statusCode={postQuery.error.data?.httpStatus ?? 500}
-  //     />
-  //   );
-  // }
-  //
-  // if (postQuery.status !== 'success') {
-  //   return <>Loading...</>;
-  // }
-  // const { data } = postQuery;
-  // return <PostItem post={data} />;
-  if (x.status !== 'success') {
+  const mutate = trpc.chat.createChatCompletion.useMutation();
+  const [text, setText] = useState('');
+
+  if (mutate.error) {
+    return (
+      <NextError
+        title={mutate.error.message}
+        statusCode={mutate.error.data?.httpStatus ?? 500}
+      />
+    );
+  }
+
+  if (mutate.isLoading) {
     return <>Loading...</>;
   }
 
-  const { data } = x;
-
-  return <div>Hello {data}</div>;
+  return (
+    <>
+      <input value={text} onChange={(e) => setText(e.currentTarget.value)} />
+      <div>{text}</div>
+      <button onClick={() => mutate.mutate(text)}>Submit</button>
+      <div>{mutate.data?.text || ''}</div>
+    </>
+  );
 };
 
 export default PostViewPage;
