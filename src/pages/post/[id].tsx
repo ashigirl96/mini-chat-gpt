@@ -2,6 +2,7 @@ import NextError from 'next/error';
 import { useRouter } from 'next/router';
 import { NextPageWithLayout } from '~/pages/_app';
 import { RouterOutput, trpc } from '~/utils/trpc';
+import { useEffect } from 'react';
 
 // type PostByIdOutput = RouterOutput['post']['byId'];
 
@@ -24,6 +25,10 @@ const PostViewPage: NextPageWithLayout = () => {
   // const id = useRouter().query.id as string;
   // const postQuery = trpc.post.byId.useQuery({ id });
   const x = trpc.post.hoge.useQuery();
+  const utils = trpc.useContext();
+  useEffect(() => {
+    void utils.post.invalidate();
+  }, [utils.post]);
   //
   // if (postQuery.error) {
   //   return (

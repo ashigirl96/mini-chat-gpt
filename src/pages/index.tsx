@@ -2,11 +2,14 @@ import { trpc } from '../utils/trpc';
 import { NextPageWithLayout } from './_app';
 import { inferProcedureInput } from '@trpc/server';
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import type { AppRouter } from '~/server/routers/_app';
 
 const IndexPage: NextPageWithLayout = () => {
   const utils = trpc.useContext();
+  useEffect(() => {
+    void utils.post.invalidate();
+  }, [utils.post]);
   // const postsQuery = trpc.post.list.useInfiniteQuery(
   //   {
   //     limit: 5,
