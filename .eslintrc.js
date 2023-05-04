@@ -5,8 +5,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:prettier/recommended',
-    'prettier',
     'plugin:import/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
@@ -26,14 +24,6 @@ module.exports = {
     'react/prop-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
   },
-  // "overrides": [
-  //   {
-  //     "files": [],
-  //     "rules": {
-  // "@typescript-eslint/no-unused-vars": "off"
-  //     }
-  //   }
-  // ],
   settings: {
     react: {
       version: 'detect',
@@ -44,4 +34,4 @@ module.exports = {
       },
     },
   },
-};
+}

@@ -12,6 +12,7 @@ specifiers:
   '@types/react': ^18.0.9
   '@typescript-eslint/eslint-plugin': ^5.47.0
   '@typescript-eslint/parser': ^5.47.0
+  axios: ^1.4.0
   clsx: ^1.1.1
   eslint: ^8.30.0
   eslint-config-next: ^13.2.1
@@ -20,7 +21,6 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-react: ^7.31.11
   eslint-plugin-react-hooks: ^4.6.0
-  eslint-plugin-unused-imports: 1.1.5
   next: ^13.2.1
   npm-run-all: ^4.1.5
   openai: ^3.2.1
@@ -33,6 +33,7 @@ specifiers:
   tsx: ^3.12.3
   typescript: ^4.8.3
   vite: ^4.1.2
+  vite-node: ^0.30.1
   vitest: ^0.28.5
   zod: ^3.0.0
 
@@ -57,6 +58,7 @@ devDependencies:
   '@types/react': 18.2.0
   '@typescript-eslint/eslint-plugin': 5.59.1_jsr5owskg7irefkzbmq6cipclm
   '@typescript-eslint/parser': 5.59.1_tbtvr3a5zwdiktqy4vlmx63mqq
+  axios: 1.4.0
   eslint: 8.39.0
   eslint-config-next: 13.3.2_tbtvr3a5zwdiktqy4vlmx63mqq
   eslint-config-prettier: 8.8.0_eslint@8.39.0
@@ -64,7 +66,6 @@ devDependencies:
   eslint-plugin-prettier: 4.2.1_5pokp25ua6t5ubushhw3tqituq
   eslint-plugin-react: 7.32.2_eslint@8.39.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.39.0
-  eslint-plugin-unused-imports: 1.1.5_ei2crdcxhh253rspcdkb2oxkny
   npm-run-all: 4.1.5
   prettier: 2.8.8
   prisma: 4.13.0
@@ -72,6 +73,7 @@ devDependencies:
   tsx: 3.12.7
   typescript: 4.9.5
   vite: 4.3.3_@types+node@18.16.3
+  vite-node: 0.30.1_@types+node@18.16.3
   vitest: 0.28.5
 
 packages:
@@ -992,6 +994,16 @@ packages:
       - debug
     dev: true
 
+  /axios/1.4.0:
+    resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==}
+    dependencies:
+      follow-redirects: 1.15.2
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+    dev: true
+
   /axobject-query/3.1.1:
     resolution: {integrity: sha512-goKlv8DZrK9hUh975fnHzhNIO4jUnFCfv/dszV5VwUGDFjI6vQ2VwoyjYjYNEbBE8AH87TduWP5uyDR1D+Iteg==}
     dependencies:
@@ -1674,26 +1686,6 @@ packages:
       resolve: 2.0.0-next.4
       semver: 6.3.0
       string.prototype.matchall: 4.0.8
-    dev: true
-
-  /eslint-plugin-unused-imports/1.1.5_ei2crdcxhh253rspcdkb2oxkny:
-    resolution: {integrity: sha512-TeV8l8zkLQrq9LBeYFCQmYVIXMjfHgdRQLw7dEZp4ZB3PeR10Y5Uif11heCsHRmhdRIYMoewr1d9ouUHLbLHew==}
-    engines: {node: ^10.12.0 || >=12.0.0}
-    peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^4.14.2
-      eslint: ^6.0.0 || ^7.0.0
-    peerDependenciesMeta:
-      '@typescript-eslint/eslint-plugin':
-        optional: true
-    dependencies:
-      '@typescript-eslint/eslint-plugin': 5.59.1_jsr5owskg7irefkzbmq6cipclm
-      eslint: 8.39.0
-      eslint-rule-composer: 0.3.0
-    dev: true
-
-  /eslint-rule-composer/0.3.0:
-    resolution: {integrity: sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==}
-    engines: {node: '>=4.0.0'}
     dev: true
 
   /eslint-scope/5.1.1:
@@ -2933,6 +2925,10 @@ packages:
       react-is: 16.13.1
     dev: true
 
+  /proxy-from-env/1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+    dev: true
+
   /ps-tree/1.2.0:
     resolution: {integrity: sha512-0VnamPPYHl4uaU/nSFeZZpR21QAWRz+sRv4iW9+v/GS/J5U5iZB5BNN6J0RMoOvdx2gWM2+ZFMIm58q24e4UYA==}
     engines: {node: '>= 0.10'}
@@ -3538,6 +3534,27 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
+      vite: 4.3.3_@types+node@18.16.3
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+    dev: true
+
+  /vite-node/0.30.1_@types+node@18.16.3:
+    resolution: {integrity: sha512-vTikpU/J7e6LU/8iM3dzBo8ZhEiKZEKRznEMm+mJh95XhWaPrJQraT/QsT2NWmuEf+zgAoMe64PKT7hfZ1Njmg==}
+    engines: {node: '>=v14.18.0'}
+    hasBin: true
+    dependencies:
+      cac: 6.7.14
+      debug: 4.3.4
+      mlly: 1.2.0
+      pathe: 1.1.0
+      picocolors: 1.0.0
       vite: 4.3.3_@types+node@18.16.3
     transitivePeerDependencies:
       - '@types/node'

@@ -10,6 +10,7 @@ interface ChatGptMessage {
 }
 
 const chatGptMessages = (message: string): ChatGptMessage[] => [
+  // TODO: ここらへんよくわからんから調べる
   {
     role: ChatCompletionRequestMessageRoleEnum.System,
     content: 'You are a helpful assistant.',
@@ -26,6 +27,7 @@ export class CreateChatCompletionUsecase {
     return chatGPTClient.respond({
       messages,
       model: 'gpt-3.5-turbo',
+      stream: false,
     });
   }
 }

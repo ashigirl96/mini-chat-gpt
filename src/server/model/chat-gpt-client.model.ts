@@ -1,35 +1,43 @@
-import { Configuration, CreateChatCompletionRequest, OpenAIApi } from 'openai';
+import { Configuration, CreateChatCompletionRequest, OpenAIApi } from 'openai'
+import type { AxiosRequestConfig } from 'axios'
 
 export interface ChatResponse {
-  text?: string;
-  messageId?: string;
+  text?: string
+  messageId?: string
 }
 
 class ChatGPTClient {
-  private openAI: OpenAIApi;
+  private openAI: OpenAIApi
 
   constructor() {
-    console.log('AAAA', process.env.OPEN_AI_API_KEY);
     const config = new Configuration({
       apiKey: process.env.OPEN_AI_API_KEY,
-    });
-    this.openAI = new OpenAIApi(config);
+    })
+    this.openAI = new OpenAIApi(config)
   }
 
-  async respond(request: CreateChatCompletionRequest): Promise<ChatResponse> {
+  async respond(
+    request: CreateChatCompletionRequest,
+    options?: AxiosRequestConfig,
+  ): Promise<ChatResponse> {
     try {
-      const res = await this.openAI.createChatCompletion(request);
+      const res = await this.openAI.createChatCompletion(
+        request,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        options,
+      )
       if (!res.data || !res.data.choices) {
-        return { text: 'Please try again later.' };
+        return { text: 'Please try again later.' }
       }
       return {
         text: res.data.choices[0]?.message?.content ?? '',
         messageId: res.data.id,
-      };
+      }
     } catch (e) {
-      throw e;
+      throw e
     }
   }
 }
 
-export const chatGPTClient = new ChatGPTClient();
+export const chatGPTClient = new ChatGPTClient()
