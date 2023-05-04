@@ -3,9 +3,9 @@
  *
  * @link https://www.prisma.io/docs/guides/database/seed-database
  */
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 async function main() {
   // const firstPostId = '5c03994c-fc16-47e0-bd02-d218a370a078';
@@ -20,14 +20,20 @@ async function main() {
   //   },
   //   update: {},
   // });
-  console.log('Seeding finished.');
+  // const org = await prisma.organization.create({
+  //   data: {},
+  // })
+  // const timeline = await prisma.chatTimeline.create({
+  //   data: {},
+  // })
+  // console.log('Seeding finished.', timeline, chat)
 }
 
 main()
   .catch((e) => {
-    console.error(e);
-    process.exit(1);
+    console.error(e)
+    process.exit(1)
   })
   .finally(async () => {
-    await prisma.$disconnect();
-  });
+    await prisma.$disconnect()
+  })
