@@ -9,7 +9,7 @@ export class ChatCompletionResolver {
       .input(
         z.object({
           prompt: z.string(),
-          chatTimelineId: z.string().nullable(),
+          timelineId: z.string(),
         }),
       )
       .mutation(async ({ input }) => {

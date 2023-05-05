@@ -1,9 +1,12 @@
+import { ChatResponseStatus } from '@prisma/client'
+
 export class ChatEntity {
   constructor(
     public id: string,
     public prompt: string,
-    public response: string,
+    public response: string | null,
     public timelineId: string,
+    public status: ChatResponseStatus,
   ) {}
 
   static fromPrisma({
@@ -11,12 +14,14 @@ export class ChatEntity {
     prompt,
     response,
     timelineId,
+    status,
   }: {
     id: string
     prompt: string
-    response: string
+    response: string | null
     timelineId: string
+    status: ChatResponseStatus
   }) {
-    return new ChatEntity(id, prompt, response, timelineId)
+    return new ChatEntity(id, prompt, response, timelineId, status)
   }
 }

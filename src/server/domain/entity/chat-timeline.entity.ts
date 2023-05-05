@@ -6,18 +6,6 @@ interface ChatGptMessage {
   content: string
 }
 
-const chatGptMessages = (message: string): ChatGptMessage[] => [
-  // TODO: ここらへんよくわからんから調べる
-  {
-    role: ChatCompletionRequestMessageRoleEnum.System,
-    content: 'You are a helpful assistant.',
-  },
-  {
-    role: ChatCompletionRequestMessageRoleEnum.User,
-    content: message,
-  },
-]
-
 export class ChatTimelineEntity {
   constructor(public id: string, public chats: ChatEntity[]) {}
 
@@ -35,7 +23,7 @@ export class ChatTimelineEntity {
         },
         {
           role: ChatCompletionRequestMessageRoleEnum.Assistant,
-          content: chat.response,
+          content: chat.response ?? '',
         },
       ]
     }, [])

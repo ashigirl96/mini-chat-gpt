@@ -2,8 +2,6 @@ import {
   chatGPTClient,
   ChatResponse,
 } from '~/server/model/chat-gpt-client.model'
-import { ChatCompletionRequestMessageRoleEnum } from 'openai'
-import { prisma } from '~/server/prisma'
 import { ChatRepository } from '~/server/infrastructure/repository/chat.repository'
 import { ChatTimelineRepository } from '~/server/infrastructure/repository/chat-timeline.repository'
 
@@ -16,14 +14,12 @@ export class CreateChatCompletionUsecase {
   }
   async execute({
     prompt,
-    chatTimelineId,
+    timelineId,
   }: {
     prompt: string
-    chatTimelineId: string | null
+    timelineId: string
   }): Promise<ChatResponse> {
-    const timeline = await this.chatTimelineRepository.findOrCreate(
-      chatTimelineId,
-    )
+    const timeline = await this.chatTimelineRepository.find(timelineId)
     const messages = timeline.messages(prompt)
     const result = await chatGPTClient.respond({
       messages,

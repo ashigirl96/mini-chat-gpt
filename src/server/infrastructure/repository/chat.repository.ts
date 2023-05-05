@@ -1,3 +1,4 @@
+import { ChatResponseStatus } from '@prisma/client'
 import { prisma } from '~/server/prisma'
 
 export class ChatRepository {
@@ -11,13 +12,21 @@ export class ChatRepository {
     timelineId: string
   }) {
     if (response) {
-      await prisma.chat.create({
+      return await prisma.chat.create({
         data: {
           prompt,
           response,
           timelineId,
+          status: ChatResponseStatus.Success,
         },
       })
     }
+    return await prisma.chat.create({
+      data: {
+        prompt,
+        timelineId,
+        status: ChatResponseStatus.Failure,
+      },
+    })
   }
 }
