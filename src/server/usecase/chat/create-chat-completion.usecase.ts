@@ -33,7 +33,7 @@ export class CreateChatCompletionUsecase {
     await this.chatRepository.create({
       timelineId: timeline.id,
       prompt,
-      answer: result.text,
+      response: result.text,
     })
     return result
   }

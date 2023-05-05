@@ -35,7 +35,7 @@ export class ChatTimelineEntity {
         },
         {
           role: ChatCompletionRequestMessageRoleEnum.Assistant,
-          content: chat.answer,
+          content: chat.response,
         },
       ]
     }, [])

@@ -1,22 +1,21 @@
-import { ChatTimeline } from '@prisma/client'
 import { prisma } from '~/server/prisma'
 
 export class ChatRepository {
   async create({
     prompt,
-    answer,
+    response,
     timelineId,
   }: {
     prompt: string
-    answer?: string
+    response?: string
     timelineId: string
   }) {
-    if (answer) {
+    if (response) {
       await prisma.chat.create({
         data: {
           prompt,
-          answer,
-          ChatTimelineId: timelineId,
+          response,
+          timelineId,
         },
       })
     }

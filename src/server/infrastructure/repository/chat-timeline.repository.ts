@@ -12,15 +12,15 @@ export class ChatTimelineRepository {
       create: {},
       select: {
         id: true,
-        Chats: true,
+        chats: true,
       },
     })
-    const chats = timeline.Chats.map(({ id, ChatTimelineId, answer, prompt }) =>
+    const chats = timeline.chats.map(({ id, timelineId, response, prompt }) =>
       ChatEntity.fromPrisma({
         id,
-        answer,
+        response,
         prompt,
-        timelineId: ChatTimelineId,
+        timelineId,
       }),
     )
     return ChatTimelineEntity.fromPrisma({
