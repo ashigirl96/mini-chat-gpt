@@ -5,8 +5,15 @@ import { CreateChatCompletionUsecase } from '~/server/usecase/chat/create-chat-c
 export class ChatCompletionResolver {
   static createChatCompletion() {
     const usecase = new CreateChatCompletionUsecase()
-    return publicProcedure.input(z.string()).mutation(async ({ input }) => {
-      return await usecase.execute(input)
-    })
+    return publicProcedure
+      .input(
+        z.object({
+          prompt: z.string(),
+          chatTimelineId: z.string().nullable(),
+        }),
+      )
+      .mutation(async ({ input }) => {
+        return await usecase.execute(input)
+      })
   }
 }

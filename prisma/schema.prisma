@@ -27,18 +27,18 @@ model ChatSetting {
 
 model ChatTimeline {
   id    String @id @default(uuid()) @db.VarChar(50)
-  Chats Chat[] @relation(name: "ChatToChatTimeline")
+  chats Chat[] @relation(name: "ChatToChatTimeline")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Chat {
-  id             String       @id @default(uuid()) @db.VarChar(50)
-  prompt         String
-  answer         String
-  ChatTimelineId String
-  ChatTimeline   ChatTimeline @relation(name: "ChatToChatTimeline", fields: [ChatTimelineId], references: [id])
+  id         String       @id @default(uuid()) @db.VarChar(50)
+  prompt     String
+  response   String
+  timelineId String
+  timeline   ChatTimeline @relation(name: "ChatToChatTimeline", fields: [timelineId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
