@@ -7,10 +7,22 @@ interface ChatGptMessage {
 }
 
 export class ChatTimelineEntity {
-  constructor(public id: string, public chats: ChatEntity[]) {}
+  constructor(
+    public id: string,
+    public title: string,
+    public chats: ChatEntity[],
+  ) {}
 
-  static fromPrisma({ id, chats }: { id: string; chats: ChatEntity[] }) {
-    return new ChatTimelineEntity(id, chats)
+  static fromPrisma({
+    id,
+    title,
+    chats,
+  }: {
+    id: string
+    title: string
+    chats: ChatEntity[]
+  }) {
+    return new ChatTimelineEntity(id, title, chats)
   }
 
   public messages(prompt: string): ChatGptMessage[] {

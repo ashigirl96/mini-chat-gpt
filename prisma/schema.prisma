@@ -27,6 +27,7 @@ model ChatSetting {
 
 model ChatTimeline {
   id    String @id @default(uuid()) @db.VarChar(50)
+  title String
   chats Chat[] @relation(name: "ChatToChatTimeline")
 
   createdAt DateTime @default(now())

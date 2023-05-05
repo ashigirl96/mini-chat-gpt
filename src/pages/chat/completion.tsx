@@ -20,7 +20,7 @@ function Chat({
         onClick={() =>
           mutate.mutate({
             prompt: text,
-            timelineId: null,
+            timelineId: '',
           })
         }
       >
