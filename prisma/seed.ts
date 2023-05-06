@@ -23,10 +23,10 @@ async function main() {
   // const org = await prisma.organization.create({
   //   data: {},
   // })
-  // const timeline = await prisma.chatTimeline.create({
+  // const timelines = await prisma.chatTimeline.create({
   //   data: {},
   // })
-  // console.log('Seeding finished.', timeline, chat)
+  // console.log('Seeding finished.', timelines, chat)
 }
 
 main()

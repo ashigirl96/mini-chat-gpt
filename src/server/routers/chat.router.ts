@@ -5,6 +5,9 @@ import { ChatTimelineResolver } from '~/server/presentation/resolver/chat-timeli
 export const chatRouter = router({
   createChatCompletion: ChatCompletionResolver.createChatCompletion(),
   createChatTimeline: ChatTimelineResolver.createTimeline(),
+  editChatTimeline: ChatTimelineResolver.editTimeline(),
+  fetchChatTimeline: ChatTimelineResolver.fetchTimeline(),
+  fetchChatTimelines: ChatTimelineResolver.fetchTimelines(),
 })
 
 //     if (!post) {

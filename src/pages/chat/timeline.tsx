@@ -7,6 +7,8 @@ import { Button } from '@saas-ui/react'
 
 const TimelineViewPage: NextPageWithLayout = () => {
   const createChatTimeline = trpc.chat.createChatTimeline.useMutation()
+  const editChatTimeline = trpc.chat.editChatTimeline.useMutation()
+  console.log(editChatTimeline)
   const [title, setTitle] = useState('')
 
   if (createChatTimeline.error) {

@@ -22,6 +22,23 @@ export class ChatTimelineRepository {
     })
   }
 
+  async findAll() {
+    const timelines = await prisma.chatTimeline.findMany({
+      select: {
+        id: true,
+        title: true,
+        chats: true,
+      },
+    })
+    return timelines.map(({ id, title, chats }) =>
+      ChatTimelineEntity.fromPrisma({
+        id,
+        title,
+        chats: chats.map((chat) => ChatEntity.fromPrisma(chat)),
+      }),
+    )
+  }
+
   async create(title: string) {
     const timeline = await prisma.chatTimeline.create({
       data: {
@@ -39,8 +56,25 @@ export class ChatTimelineRepository {
     })
   }
 
+  async update(id: string, title: string) {
+    const timeline = await prisma.chatTimeline.update({
+      where: {
+        id,
+      },
+      data: {
+        title,
+      },
+      select: {
+        id: true,
+        title: true,
+        chats: true,
+      },
+    })
+    return ChatTimelineEntity.fromPrisma({ ...timeline })
+  }
+
   // async findOrCreate(id: string | null) {
-  //   const timeline = await prisma.chatTimeline.upsert({
+  //   const timelines = await prisma.chatTimeline.upsert({
   //     where: {
   //       id: id ?? '',
   //     },
@@ -51,7 +85,7 @@ export class ChatTimelineRepository {
   //       chats: true,
   //     },
   //   })
-  //   const chats = timeline.chats.map(
+  //   const chats = timelines.chats.map(
   //     ({ id, timelineId, response, prompt, status }) =>
   //       ChatEntity.fromPrisma({
   //         id,
@@ -62,7 +96,7 @@ export class ChatTimelineRepository {
   //       }),
   //   )
   //   return ChatTimelineEntity.fromPrisma({
-  //     id: timeline.id,
+  //     id: timelines.id,
   //     chats,
   //   })
   // }
