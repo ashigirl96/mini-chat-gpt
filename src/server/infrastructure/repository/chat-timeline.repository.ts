@@ -22,6 +22,23 @@ export class ChatTimelineRepository {
     })
   }
 
+  async create(title: string) {
+    const timeline = await prisma.chatTimeline.create({
+      data: {
+        title,
+      },
+      select: {
+        id: true,
+        title: true,
+      },
+    })
+    return ChatTimelineEntity.fromPrisma({
+      id: timeline.id,
+      title: timeline.title,
+      chats: [],
+    })
+  }
+
   // async findOrCreate(id: string | null) {
   //   const timeline = await prisma.chatTimeline.upsert({
   //     where: {
