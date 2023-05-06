@@ -3,7 +3,7 @@ import type { AppProps, AppType } from 'next/app'
 import type { ReactElement, ReactNode } from 'react'
 import { DefaultLayout } from '~/components/DefaultLayout'
 import { trpc } from '~/utils/trpc'
-import { theme } from '~/pages/theme'
+import { theme } from '~/theme'
 import { SaasProvider } from '@saas-ui/react'
 
 export type NextPageWithLayout<

@@ -9,7 +9,7 @@ import { Button } from '@saas-ui/react'
 const TimelineViewPage: NextPageWithLayout = () => {
   const router = useRouter()
   const timelineId = useMemo<string>(
-    () => router.query.id ?? '',
+    () => (typeof router.query.id === 'string' ? router.query.id : ''),
     [router.query.id],
   )
   const query = trpc.chat.fetchChatTimeline.useQuery({
